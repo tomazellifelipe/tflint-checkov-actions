@@ -23,11 +23,10 @@ jobs:
         path: ~/.tflint.d/plugins
         key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
 
-    - name: Install OpenTofu
-      run: |
-          curl -s https://opentofu.com/install.sh | bash
-      env:
-        TOFU_VERSION: latest
+    - uses: opentofu/setup-opentofu@v1
+      name: Install OpenTofu
+      with:
+        tofu_version: 1.6.0
 
     - name: Initialize OpenTofu
       run: tofu init
