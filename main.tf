@@ -12,6 +12,6 @@ provider "aws" {
 
 }
 
-resource "aws_s3_bucket" "tflint-checkov" {
+resource "aws_s3_bucket" "tflint_checkov" {
   bucket_prefix = "tflint-checkov"
 }
