@@ -6,7 +6,7 @@ on:
     types: [ opened, synchronize ]
 
 jobs:
-  tflint:
+  validate:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -22,6 +22,20 @@ jobs:
       with:
         path: ~/.tflint.d/plugins
         key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
+
+    - name: Install OpenTofu
+      run: curl -s https://opentofu.com/install.sh | bash
+      env:
+        TOFU_VERSION: latest
+
+    - name: Initialize OpenTofu
+      run: tofu init
+
+    - name: Check OpenTofu formatting
+      run: tofu fmt -check
+
+    - name: Validate OpenTofu
+      run: tofu validate
 
     - uses: terraform-linters/setup-tflint@v4
       name: Setup TFLint
