@@ -8,9 +8,7 @@ terraform {
   }
 }
 
-provider "aws" {
-
-}
+provider "aws" {}
 
 resource "aws_s3_bucket" "tflint_checkov" {
   bucket_prefix = "tflint-checkov"
@@ -35,4 +33,3 @@ resource "aws_s3_bucket_public_access_block" "block_all" {
   restrict_public_buckets = true
   ignore_public_acls      = true
 }
-
