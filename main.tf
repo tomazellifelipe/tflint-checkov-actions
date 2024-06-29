@@ -10,6 +10,10 @@ terraform {
 
 provider "aws" {}
 
+resource "aws_sqs_queue" "lambda_trigger" {
+  name_prefix = "tflint-checkov"
+}
+
 resource "aws_s3_bucket" "tflint_checkov" {
   bucket_prefix = "tflint-checkov"
 }
