@@ -17,7 +17,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      name: Checkout source code
+    - uses: actions/setup-python@v5
+      name: Setup python for checkov run
+      with:
+        python-version: 3.12
 
     - uses: actions/cache@v4
       name: Cache plugin dir
@@ -44,9 +47,6 @@ jobs:
       with:
         tflint_version: v0.50.3
 
-    - name: Show version
-      run: tflint --version
-
     - name: Init TFLint
       run: tflint --init
       env:
@@ -55,3 +55,6 @@ jobs:
 
     - name: Run TFLint
       run: tflint -f compact
+
+    - uses: bridgecrewio/checkov@v12
+      directory: .
