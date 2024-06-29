@@ -56,5 +56,7 @@ jobs:
     - name: Run TFLint
       run: tflint -f compact
 
-    - uses: bridgecrewio/checkov@v12
-      directory: .
+    - name: Run checkov
+      uses: bridgecrewio/checkov@v12
+      with:
+        directory: .
