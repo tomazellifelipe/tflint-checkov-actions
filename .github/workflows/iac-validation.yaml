@@ -6,7 +6,6 @@ on:
   pull_request:
     types: [ opened, synchronize ]
 
-permissions: read-all
 
 jobs:
   validate:
