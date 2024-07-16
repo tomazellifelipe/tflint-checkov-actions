@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "tflint-checkov" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "abort_incomplete_multipart" {
-  bucket = aws_s3_bucket.tflint_checkov.id
+  bucket = aws_s3_bucket.tflint-checkov.id
   rule {
     id     = "abort-incomplete-multipart-uploads"
     status = "Enabled"
@@ -27,7 +27,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "abort_incomplete_multipart" {
 }
 
 resource "aws_s3_bucket_public_access_block" "block_all" {
-  bucket                  = aws_s3_bucket.tflint_checkov.id
+  bucket                  = aws_s3_bucket.tflint-checkov.id
   block_public_acls       = true
   block_public_policy     = true
   restrict_public_buckets = true
